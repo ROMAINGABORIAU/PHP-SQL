@@ -1,0 +1,95 @@
+
+
+<?php
+
+// try catch permet de capturer les erreurs s'il y en a dans notre code. 
+// Dès qu'une erreur survient, le navigateur sort du try et execute le code présent dans le catch
+try {
+    // Connexion à la BDD grâce à la class PDO
+    $pdo = new PDO("mysql:host=localhost:8889;dbname=firstDb", "root", "root");
+    // Exec permet d'envoyer des requêtes. On l'utilise généralement pour de la configuration
+    $pdo->exec("SET NAMES UTF8");
+    // setAttribute permet de configurer certains points de nos requêtes comme l'affichage des erreurs
+    // avec PDO::ATTR_ERRMODE
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // include "getInfos.php";
+	include "saveInfos.php";
+
+    // On précise qu'on veut utiliser les erreurs de PDO.
+} catch (\PDOException $e) {
+    echo $e->getMessage();
+}
+
+<?php
+
+try {
+    // ->query nous permet de récupérer les informations contenues dans la BDD.
+    // On le couple avec fetch() ou fetchAll().
+    // fetchAll() permet de récupérer l'ensemble des informations dans un tableau de données.
+    // Si vous n'avez qu'une ligne dans la BDD, vous aurez un tableau ayant une entrée.
+    $query = $pdo->query("SELECT * FROM user");
+    // l'option PDO::FETCH_ASSOC précise que nous souhaitons récupérer les informations sous forme de tableau associatif
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($result);
+    foreach ($result as $line) {
+        echo $line["nom"];
+        echo "<br>";
+    }
+
+    //fetch() est utilisé pour récupérer une seule ligne dans notre BDD. 
+    // Elle retourne directement la ligne avec ses valeurs.
+    // Si on utilise fetch() avec une requête qui retourne plusieurs lignes, 
+    // seule la première ligne matchant avec notre requête sera retournée.
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    var_dump($result);
+} catch (\PDOException $e) {
+//    echo $e->getMessage();
+}
+
+<?php
+
+try {
+
+$nom = "Doe";
+$prenom= "Janee";
+$email = "janee@doe.fr";
+$password = "password";
+
+
+// Requête d'insertion de données où toutes les informations sont dans la requête de base.
+$statement = "INSERT INTO user (prenom, nom, email, password) VALUES ('$nom', '$prenom', '$email', '$password')";
+$prepare = $pdo->prepare($statement);
+$prepare->execute();
+
+// Méthode d'enregistrement qui va matcher les données dans le tableau avec les ?. 
+// Cette requête est plus courte à écrire et n'a pas besoin de clés dans le tableau.
+// Cependant il faut faire attention à l'ordre des données pour éviter de mélanger les valeurs dans les champs
+$post = ["Doe", "Janee", "janee@doe.fr", "password"];,
+
+
+// Méthode d'enregistrement qui prend en compte les bindValues. 
+// La requête match les paramètres avec les clés dans le tableau de données à enregistrer.
+// ça évite ainsi l'enregistrement de données dans le mauvais champs.
+$post = ["nom" => "Doe", "prenom"=>"Janee", "email"=>"janee@doe.fr", "password"=> "password"];
+$statement = "INSERT INTO user (prenom, nom, email, password) VALUES (:prenom, :nom, :email, :password)";
+$prepare = $pdo->prepare($statement);
+$prepare->execute($post);
+
+
+} catch (\PDOException $e) {
+    $e->getMessage();
+}
+
+
+<?php
+
+try {
+
+// Requête d'insertion de données où toutes les informations sont dans la requête de base.
+$statement = "DELETE FROM user where prenom='Janee'";
+$prepare = $pdo->prepare($statement);
+$prepare->execute();
+} catch(\PDOException $e){
+    echo $e->getMessage();
+}
