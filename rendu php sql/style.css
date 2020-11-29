@@ -1,0 +1,149 @@
+/*index.php*/
+.header_navbar {
+        background-color: #068B29;
+        width: 100%; 
+        border-radius: 20px;
+        margin-right: 0%;
+        margin-left: 0%;
+        
+}
+.header_navbar_logo {
+    width: 80%;
+}
+
+.header_navbar_text_inscription {
+    color: white;
+    text-align: right;
+}
+
+.header_navbar_text_connexion {
+    color: white;
+    text-align: right;
+}
+
+a:link {
+    color: white;
+}
+
+.btn_rejoint_commu {
+    background-color: #068B29;
+    border-radius: 10px;
+    padding: 20px 5px 20px 5px;
+}
+
+.btn_tout_les_sondages {
+    background-color: #068B29;
+    border-radius: 10px;
+    padding: 20px 5px 20px 5px;
+}
+
+.c {
+    background-color: #068B29;
+    border-radius: 10px;
+    padding: 20px 5px 20px 5px;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-right-width: 100px;
+    border-left-width: 100px;
+    border-bottom: 200px solid #000;
+    background-color: #068B29;
+}
+
+.footer {
+    background-color: #068B29;
+    width: 100%;
+}
+
+/*tout_les sondages.php */
+.tls_title {
+    font-size: 500%;
+}
+
+.tls_championnats_niveau {
+    color: red;
+    font-size: 30px; 
+    text-align:center;   
+}
+
+.tls_btn_voirplus {
+    background-color: yellow;
+    border: none;   
+    font-size: 50px;
+    color: red;
+}
+
+/*sondage.php*/
+.sondage_text_fp {
+    font-size: 150%;
+}
+
+.sondage_choix_nomE {
+    font-size: 150%;
+    text-align: center; 
+}
+
+.sondage_btn_validation {
+    width: 50%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 400%;
+    color: black;
+    background-color: yellow;
+    border: none;;
+}
+/*classement.php*/
+.classement_title {
+    background-color: yellow; 
+    border: 3px;
+    text-align: center;
+    width: 50%;
+    font-size: 300%;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+}
+
+.classement_tableau {
+    border-radius: 25px;
+    margin-left: auto;
+    border-right: auto;
+    border-width: 3px;
+}
+
+.classement_btn {
+    background-color: yellow; 
+    border-color: black;
+    text-align: center;
+    font-size: 200%;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+    display:block;
+    width:30%;
+    margin:0 auto;
+}
+
+/*inscription.php*/
+.inscription_tableau {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    font-size: 400%;
+}
+.inscription_tr {
+    text-align: right;
+}
+
+.inscription_boutton_valid {
+    width: 75%;
+    background-color: yellow;
+    font-size: 150%;
+    margin-left: auto;
+    margin-right: auto;
+}
